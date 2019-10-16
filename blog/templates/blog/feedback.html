@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>feedback</title>
+    <STYLE>
+        html {
+  background: radial-gradient(#FFF176, #F57F17);
+  min-height: 100%;
+  font-family: "Roboto", sans-serif;
+}
+.title {
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #FF8F00;
+  font-weight: 300;
+  font-size: 24px;
+  letter-spacing: 1px;
+}
+.description
+{
+  text-align: center;
+  color: #666;
+  margin-bottom: 30px;
+  }
+  label {
+  margin-bottom: 20px;
+  display: block;
+  font-size: 18px;
+  color: #666;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 20px 0;
+  cursor: pointer;
+}
+
+button
+{
+  padding: 10px 20px;
+  border-radius: 3px;
+  background: #FF6F00;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: inline-block;
+  cursor: pointer;
+}
+textarea
+{
+  padding: 10px 20px;
+  border: 1px solid #999;
+  border-radius: 3px;
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  outline: none;
+
+  &:focus
+    border-color: #FF6F00
+}
+input[type="email"]{
+  padding: 10px 20px;
+  border: 1px solid #999;
+  border-radius: 3px;
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  outline: none;
+
+  &:focus
+    border-color: #FF6F00
+    }
+
+    .text-center
+    {
+  text-align: center;
+}
+.modal-wrap
+{
+  max-width: 600px;
+  margin: 50px auto;
+  transition: transform 300ms ease-in-out;
+}
+.modal-header
+{
+  height: 45px;
+  background: white;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+
+.modal-bodies
+{
+  position: relative;
+  perspective: 1000px;
+ }
+ .modal-body
+  {
+  background: white;
+  padding: 40px 100px;
+  box-shadow: 0px 50px 30px -30px rgba(0,0,0,0.3);
+  margin-bottom: 50px;
+  position: absolute;
+  top: 0;
+  box-sizing: border-box;
+  width: 100%;
+  transform-origin: top left;
+  }
+</STYLE>
+</head>
+<body>
+<div class="modal-wrap">
+    <div class="modal-bodies">
+        <div class="modal-body modal-body-step-1 is-showing">
+            <div class="title">Feedback</div>
+            <div class="description">Hello there, Please leave your feedback or comments.</div>
+            <form method="post" action="{% url 'feedback' %}">
+                {% csrf_token %}
+                <input name='sender' type="email" placeholder="Email" />
+                <textarea name='comment' id='comment' placeholder="Feedback"/></textarea><br />
+                <div class="text-center">
+                        <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

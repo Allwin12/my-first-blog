@@ -1,22 +1,619 @@
 <html>
+    {% load pwa %}
     <head>
+        {% progressive_web_app_meta %}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Barriecito' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Rubik+Mono+One' rel='stylesheet'>
+        <style>
+
+@import url(https://fonts.googleapis.com/css?family=Montserrat:700);
+.typing{
+  margin:0;
+  width:100%;
+  height:200px;
+  overflow:hidden;
+  background:hsla(0, 5%, 5%, 1);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background :#2874A6;
+  max-width:100%;
+}
+svg{
+  width:100%;
+  max-width:100%;
+}
+.menu{
+  background-color: #6c5ce7;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .12), 0 1px 2px 0 rgba(0, 0, 0, .24);
+}
+
+.menu__list{
+  text-align: center;
+  padding-left: 0;
+  font-size:25px;
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.menu__link{
+  display: block;
+  will-change: color;
+  transition: color .25s ease-out;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.menu__link:focus{
+  outline: 2px solid #fff;
+}
+
+@media (min-width: 601px){
+
+  .menu__list{
+    display: flex;
+  }
+
+  .menu__group{
+    flex-grow: 1;
+  }
+
+  .menu__link{
+    position: relative;
+    overflow: hidden;
+  }
+
+  .menu__link:before, .menu__link:after{
+    content: "";
+    width: 0;
+    height: 3px;
+    background-color: #fff;
+
+    will-change: width;
+    transition: width .05s ease-out;
+
+    position: absolute;
+    bottom: 0;
+  }
+
+  .menu__link:before{
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .menu__link:after{
+    right: 50%;
+    transform: translateX(50%);
+  }
+
+  .menu__link:hover:before, .menu__link:hover:after{
+    width: 100%;
+    transition-duration: .15s;
+  }
+}
+
+/* hover effect */
+
+.menu:hover .menu__link:not(:hover){
+  color: #241c69;
+}
+.by
+{
+  height:100%;
+}
+
+.bg {
+  animation:slide 3s ease-in-out infinite alternate;
+  background-image: linear-gradient(-60deg, #6c3 50%, #09f 50%);
+  bottom:0;
+  left:-50%;
+  opacity:.5;
+  position:fixed;
+  right:-50%;
+  top:0;
+  z-index:-1;
+}
+
+.bg2 {
+  animation-direction:alternate-reverse;
+  animation-duration:4s;
+}
+
+.bg3 {
+  animation-duration:5s;
+}
+
+@keyframes slide {
+  0% {
+    transform:translateX(-25%);
+  }
+  100% {
+    transform:translateX(25%);
+  }
+}
+.blockquote-wrapper {
+   display: flex;
+   height: 50vh;
+   padding: 0 20px;
+}
+
+/* Blockquote main style */
+.blockquote {
+    position: relative;
+    font-family: 'Barlow Condensed', sans-serif;
+    max-width: 620px;
+    margin: 80px auto;
+    align-self: center;
+}
+
+/* Blockquote header */
+.blockquote h1 {
+    font-family: 'Abril Fatface', cursive;
+    position: relative; /* for pseudos */
+    color: #e74848;
+    font-size: 2.8rem;
+    font-weight: normal;
+    line-height: 1;
+    margin: 0;
+    border: 2px solid #fff;
+    border: solid 2px;
+    border-radius:20px;
+    padding: 25px;
+}
+
+/* Blockquote right double quotes */
+.blockquote h1:after {
+    content:"";
+    position: absolute;
+    border: 2px solid #e74848;
+    border-radius: 0 50px 0 0;
+    width: 60px;
+    height: 60px;
+    bottom: -62px;
+    left: 50px;
+    border-bottom: none;
+    border-left: none;
+    z-index: 3;
+}
+
+.blockquote h1:before {
+    content:"";
+    position: absolute;
+    width: 80px;
+    border: 6px solid #292a2b;
+    bottom: -3px;
+    left: 50px;
+    z-index: 2;
+}
+
+/* increase header size after 600px */
+@media all and (min-width: 600px) {
+    .blockquote h1 {
+        font-size: 3rem;
+        line-height: 1.2;
+   }
+
+}
+.bodyclass {
+  background-color: #292a2b;
+ }
+
+/* Blockquote subheader */
+.blockquote h4 {
+    position: relative;
+    color: #ffffff;
+    font-size: 1.3rem;
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 0;
+    padding-top: 15px;
+    z-index: 1;
+    margin-left:150px;
+    padding-left:12px;
+}
+
+
+.blockquote h4:first-letter {
+  margin-left:-12px;
+}
+
+.quote2 {
+  background-color: #52ACFF;
+  border-radius:100px;
+  padding:100px;
+  width:500px;
+  margin:30px;
+  background-image: linear-gradient(180deg, #52ACFF 25%, #FFE32C 100%);
+ }
+.blockquote-wrapper1 {
+   display: flex;
+   height: 100vh;
+   padding: 0 20px;
+}
+
+/* Blockquote main style */
+.blockquote1 {
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    color: #ffffff;
+    padding: 30px 0;
+    width: 100%;
+    max-width: 500px;
+    z-index: 1;
+    margin: 50px auto;
+    align-self: center;
+    border-top: solid 1px;
+    border-bottom: solid 1px;
+}
+
+/* Blockquote header */
+.blockquote1 h1 {
+    position: relative;
+    color: #FFFFFF;
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1;
+    margin: 0;
+}
+
+/* Blockquote right double quotes */
+.blockquote1:after {
+    position: absolute;
+    content: "”";
+    color: rgba(255, 255, 255, 1);
+    font-size: 10rem;
+    line-height: 0;
+    bottom: -43px;
+    right: 30px;
+}
+
+/* increase header size after 600px */
+@media all and (min-width: 600px) {
+    .blockquote1 h1 {
+        font-size: 30px;
+   }
+
+}
+
+/* Blockquote subheader */
+.blockquote1 h4 {
+    position: relative;
+    color: #292a2b;
+    font-size: 1.4rem;
+    font-weight: normal;
+    line-height: 1;
+    margin: 0;
+    padding-top: 20px;
+    z-index: 1;
+}
+
+body
+{
+    height:200px;
+}
+
+.clockbody {
+    padding:10px;
+    border-radius:30px;
+    width:300px;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.clock {
+  height: 20vh;
+  color: white;
+  font-size: 11vh;
+  font-family: sans-serif;
+  line-height: 20.4vh;
+  display: flex;
+  position: relative;
+  /*background: green;*/
+  overflow: hidden;
+}
+
+.clock::before, .clock::after {
+  content: '';
+  width: 7ch;
+  height: 3vh;
+  background: linear-gradient(to top, transparent, black);
+  position: absolute;
+  z-index: 2;
+}
+
+.clock::after {
+  bottom: 0;
+  background: linear-gradient(to bottom, transparent, black);
+}
+
+.clock > div {
+  display: flex;
+}
+
+.tick {
+  line-height: 17vh;
+}
+
+.tick-hidden {
+  opacity: 0;
+}
+
+.move {
+  animation: move linear 1s infinite;
+}
+
+@keyframes move {
+  from {
+    transform: translateY(0vh);
+  }
+  to {
+    transform: translateY(-20vh);
+  }
+}
+
+.walletcontainer
+{
+    background: rgba(63, 217,255, 0.6);
+    margin:20px;
+}
+
+.quotecontainer
+{
+    margin:20px;
+    padding:20px;
+    background: rgba(63, 217,255, 0.6);
+}
+
+
+.wallet
+        {
+            width:70%;
+            text-align:center;
+            padding:20px;
+            background:#EBF5FB;
+            margin-bottom:20px;
+            box-shadow: 10px 15px 10px black;
+        }
+
+
+.fa {
+  padding: 12px;
+  font-size:50px;
+  width: 50px;
+  border-radius:20px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+}
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.fa-google {
+  background: #dd4b39;
+  color: white;
+}
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.fa-youtube {
+  background: #bb0000;
+  color: white;
+}
+
+.fa-github {
+  background:black;
+  color: white;
+}
+
+footer
+{
+    background:#1E8CF9;
+    color:white;
+    font-size:20px;
+    padding:30px;
+}
+img{
+  animation: shake 0.5s;
+  max-width:100%;
+  animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+        </style>
         <title>Allwin's blog</title>
     </head>
-    <body>
-        <div>
-            <h1><a href="/">Allwin's Blog</a></h1>
-        </div>
+        <body bgcolor="#B6D9F9" >
 
-        <div>
-            <p>published: 14.06.2014, 12:14</p>
-            <h2><a href="">My first post</a></h2>
-            <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        </div>
+     <div class="typing">
+        <svg width="100%" height="100%" viewBox="195 45 100 100" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+        <path id="path">
+	    <animate attributeName="d" from="m0,110 h0" to="m0,110 h1100" dur="6.8s" begin="0s" repeatCount="indefinite"/>
+	    </path>
+	    <text font-size="26" font-family="Montserrat" fill='hsla(36, 95%, 85%, 1)'>
+	    <textPath xlink:href="#path">Hi I am Allwin. Welcome to my blog!!
+        </textPath>
+	    </text>
+        </svg>
+    </div>
+        <br>
 
-        <div>
-            <p>published: 14.06.2014, 12:14</p>
-            <h2><a href="">My second post</a></h2>
-            <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut f.</p>
-        </div>
-    </body>
+        <center>
+        <img style="border-radius:40px; box-shadow:20px 20px 15px black;" src="https://www.theminimalists.com/wp-content/uploads/2017/06/unnamed.jpg" height="500px" width="800px">
+        </center>
+        <br>
+
+        <div class="page">
+  <div class="page__demo">
+    <nav class="menu">
+      <ul class="menu__list">
+        <li class="menu__group"><a href="#0" class="menu__link"><h4>Home</h4></a></li>
+        <li class="menu__group"><a href="resume/" class="menu__link"><h4>About me</h4></a></li>
+        <li class="menu__group"><a href="#0" class="menu__link"><h4>Gallery</h4></a></li>
+        <li class="menu__group"><a href="blog/" class="menu__link"><h4>Blog</h4></a></li>
+        <li class="menu__group"><a href="{% url 'feedback' %}" class="menu__link"><h4>Feedback</h4></a></li>
+        <li class="menu__group"><a href="hi/" class="menu__link"><h4>Contact</h4></a></li>
+      </ul>
+    </nav>
+  </div>
+  </div>
+<br>
+<center>
+    <div class = "walletcontainer" style="padding:20px;">
+        <h1 style=" font-family:Barriecito; text-shadow:3px 3px black; color:white; background:#1E8CF9; padding:20px; border-radius:20px; text-align:left;">Ethereum wallet</h1>
+        <h3>Hi, I created this wallet using django and ether.js. Click on the below image to launch. Read instructions <a href="https://github.com/Allwin12/EtherWallet">here</a></h3>
+<div onclick="fun()" class = "wallet">
+    <h1>Ether Wallet</h1>
+    <img height="250px" width="250px" src="https://www.stickpng.com/assets/images/5a7593fc64538c292dec1bbf.png">
+</div>
+</div>
+</center>
+<div class = "quotecontainer">
+    <h1 style=" font-family:Barriecito; color:white; background:#1E8CF9; text-shadow:3px 3px black; padding:20px; border-radius:20px;">Quote of the day</h1>
+<center>
+<div class ="quote2">
+    <div class="blockquote-wrapper1">
+  <div class="blockquote1">
+    <h1>
+      {{quote}}
+     </h1>
+    <h4>{{author}}</h4>
+  </div>
+</div>
+</div>
+</center>
+</div>
+
+
+<br>
+
+<div class = by>
+    <div class="bg"></div>
+    <div class="bg bg2"></div>
+    <div class="bg bg3"></div>
+    <div class="content"></div>
+</div>
+
+</body>
+
+<footer>
+    <center>
+            <h1 style="font-family: 'Rubik Mono One'; text-shadow:3px 3px black; ">Allwin</h1>
+            <h2 style="text-shadow:3px 3px black;">தனித்து போராடி கரைசேர்ந்த பின்
+திமிராய் இருப்பதில் தப்பில்லையே</h2>
+        <a href="#" class="fa fa-facebook"></a>
+        <a href="#" class="fa fa-twitter"></a>
+        <a href="#" class="fa fa-linkedin"></a>
+        <a href="#" class="fa fa-github"></a>
+    </center>
+</footer>
+
+<SCRIPT type="text/javascript">
+        var hoursContainer = document.querySelector('.hours')
+var minutesContainer = document.querySelector('.minutes')
+var secondsContainer = document.querySelector('.seconds')
+var tickElements = Array.from(document.querySelectorAll('.tick'))
+
+var last = new Date(0)
+last.setUTCHours(-1)
+
+var tickState = true
+
+function updateTime () {
+  var now = new Date
+
+  var lastHours = last.getHours().toString()
+  var nowHours = now.getHours().toString()
+  if (lastHours !== nowHours) {
+    updateContainer(hoursContainer, nowHours)
+  }
+
+  var lastMinutes = last.getMinutes().toString()
+  var nowMinutes = now.getMinutes().toString()
+  if (lastMinutes !== nowMinutes) {
+    updateContainer(minutesContainer, nowMinutes)
+  }
+
+  var lastSeconds = last.getSeconds().toString()
+  var nowSeconds = now.getSeconds().toString()
+  if (lastSeconds !== nowSeconds) {
+    //tick()
+    updateContainer(secondsContainer, nowSeconds)
+  }
+
+  last = now
+}
+
+function fun()
+{
+    window.open("wallethome/","_self");
+}
+
+function updateContainer (container, newTime) {
+  var time = newTime.split('')
+
+  if (time.length === 1) {
+    time.unshift('0')
+  }
+
+
+  var first = container.firstElementChild
+  if (first.lastElementChild.textContent !== time[0]) {
+    updateNumber(first, time[0])
+  }
+
+  var last = container.lastElementChild
+  if (last.lastElementChild.textContent !== time[1]) {
+    updateNumber(last, time[1])
+  }
+}
+
+function updateNumber (element, number) {
+  //element.lastElementChild.textContent = number
+  var second = element.lastElementChild.cloneNode(true)
+  second.textContent = number
+
+  element.appendChild(second)
+  element.classList.add('move')
+
+  setTimeout(function () {
+    element.classList.remove('move')
+  }, 990)
+  setTimeout(function () {
+    element.removeChild(element.firstElementChild)
+  }, 990)
+}
+
+setInterval(updateTime, 100)
+    </SCRIPT>
 </html>
