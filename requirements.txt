@@ -1,8 +1,7 @@
--f /usr/share/pip-wheels
-Django==2.2
+Django==2.2.6
 django-progressive-web-app==0.1.1
 djangorestframework==3.10.3
-lxml==4.3.3
-pytz==2018.9
+lxml==4.4.1
+pytz==2019.3
 sqlparse==0.3.0
-wikiquote==0.1.12
+wikiquote==0.1.14
